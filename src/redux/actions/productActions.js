@@ -152,3 +152,13 @@ export const setProductOnForm = _id => {
       })
     }
 }
+
+//SET CATEGORY
+export const setProductCategory = categoryName => {
+    return dispatch => {
+      dispatch({
+        type: SET_SELECTED_CATEGORY,
+        payload: categoryName
+      })
+    }
+  }
