@@ -112,6 +112,13 @@ export default function ( state = initialState, action) {
                 categoryName: action.payload
             }
         }
+        case ORDER_PRODUCTS_BY_PRICE: {
+            return {
+              ...state,
+              sort: action.payload.sort,
+              items: action.payload.items
+            }
+        }
         default:
         return state
     }
