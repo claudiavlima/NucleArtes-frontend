@@ -32,6 +32,11 @@ export default function ( state = initialState, action) {
             items: action.payload,
             filteredItems: action.payload
         }
+        case ADD_PRODUCT_PENDING:
+        return {
+            ...state,
+            isLoading: true
+        }
         default:
         return state
     }
