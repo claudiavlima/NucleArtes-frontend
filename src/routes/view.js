@@ -11,9 +11,9 @@ class Routes extends Component {
         </BrowserRouter>
       )
     }
-  }
-  
-  const PrivateRoute = ({ component: Component, ...rest }) => (
+}
+
+const PrivateRoute = ({ component: Component, ...rest }) => (
     <Route
       {...rest}
       render={props =>
