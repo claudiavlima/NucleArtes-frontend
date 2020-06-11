@@ -71,6 +71,12 @@ export default function ( state = initialState, action) {
                     items: newProductUpdate
                 }
         }
+        case UPDATE_PRODUCT_ERROR:
+        return {
+            ...state,
+            isLoading: false,
+            message: action.payload.message
+        }
         default:
         return state
     }
