@@ -94,6 +94,12 @@ export default function ( state = initialState, action) {
             isLoading: false,
             items: newProducts
         }
+        case DELETE_PRODUCT_ERROR:
+        return {
+            ...state,
+            isLoading: false,
+            message: action.payload.message
+        }
         default:
         return state
     }
