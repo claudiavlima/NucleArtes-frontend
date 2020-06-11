@@ -77,6 +77,11 @@ export default function ( state = initialState, action) {
             isLoading: false,
             message: action.payload.message
         }
+        case DELETE_PRODUCT_PENDING:
+        return {
+            ...state,
+            isLoading: true
+        }
         default:
         return state
     }
