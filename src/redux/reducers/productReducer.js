@@ -53,6 +53,11 @@ export default function ( state = initialState, action) {
             error: action.error,
             message: action.payload.message
         }
+        case UPDATE_PRODUCT_PENDING:
+        return {
+            ...state,
+            isLoading: true
+        }
         default:
         return state
     }
