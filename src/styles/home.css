@@ -41,13 +41,14 @@
 .buttonSession{
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: flex-start;
     width: 50%;
     height: 50px;
 }
 .options {
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
     width: 50%;
     height: 50px;
 }
@@ -63,13 +64,6 @@
     justify-content: center;
     align-items: center;
     width: 12%;
-    height: 50px;
-}
-.categorieMenu {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 13%;
     height: 50px;
 }
 .basketMenu {
@@ -92,22 +86,19 @@
     width: 10%;
 }
 .productMenu:hover {
-    background-color: #860202;
+    background-color: #1d72a3;
 }
 .loginMenu:hover {
-    background-color: #860202;
+    background-color: #1d72a3;
 }
 .registerMenu:hover {
-    background-color: #860202;
+    background-color: #1d72a3;
 }
 .basketMenu:hover {
-    background-color: #860202;
-}
-.categorieMenu:hover {
-    background-color: #860202;
+    background-color: #1d72a3;
 }
 .homeMenu:hover {
-    background-color: #860202;
+    background-color: #1d72a3;
 }
 #login2 {
     display: flex;

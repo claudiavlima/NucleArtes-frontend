@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PublicHome from '../components/home/publicHome'
+import store from '../redux/store'
 
 class Routes extends Component {
     render() {
@@ -9,6 +10,7 @@ class Routes extends Component {
         <BrowserRouter>
           <Switch>
             <Route exact path='/publicHome' component={PublicHome}/>
+            <Redirect from='/' to='/publicHome' />
           </Switch>
         </BrowserRouter>
       )
