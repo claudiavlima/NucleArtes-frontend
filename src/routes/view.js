@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
+import PublicHome from '../components/home/publicHome'
 
 class Routes extends Component {
     render() {
       return (
         <BrowserRouter>
           <Switch>
+            <Route exact path='/publicHome' component={PublicHome}/>
           </Switch>
         </BrowserRouter>
       )
