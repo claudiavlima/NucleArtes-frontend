@@ -58,6 +58,19 @@ export default function ( state = initialState, action) {
             ...state,
             isLoading: true
         }
+        case UPDATE_PRODUCT_SUCCESS: {
+            console.log(action.payload)
+            const newProductUpdate = [...state.items]
+            const productToUpdate = newProductUpdate.findIndex(
+            ele => ele._id === action.payload._id
+            )
+            newProductUpdate.splice(productToUpdate, 1, action.payload)
+                return {
+                    ...state,
+                    isLoading: false,
+                    items: newProductUpdate
+                }
+        }
         default:
         return state
     }
