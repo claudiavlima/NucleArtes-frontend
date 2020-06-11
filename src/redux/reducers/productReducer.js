@@ -82,6 +82,18 @@ export default function ( state = initialState, action) {
             ...state,
             isLoading: true
         }
+        case DELETE_PRODUCT_SUCCESS:
+        console.log(action.payload)
+        const newProducts = [...state.items]
+        const productToDelete = newProducts.findIndex(
+            ele => ele._id === action.payload._id
+        )
+        newProducts.splice(productToDelete, 1)
+        return {
+            ...state,
+            isLoading: false,
+            items: newProducts
+        }
         default:
         return state
     }
