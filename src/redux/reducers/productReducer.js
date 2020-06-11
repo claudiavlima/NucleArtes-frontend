@@ -106,6 +106,12 @@ export default function ( state = initialState, action) {
               productSelected: action.payload
             }
         }
+        case SET_SELECTED_CATEGORY: {
+            return {
+                ...state,
+                categoryName: action.payload
+            }
+        }
         default:
         return state
     }
