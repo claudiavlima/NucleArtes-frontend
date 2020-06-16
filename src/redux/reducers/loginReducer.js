@@ -36,6 +36,28 @@ export default function(state = initialState, action) {
             return {
                 state: initialState
             }
+        case LOGIN_USER_PENDING:
+            return {
+                ...state,
+                isLoading: true,
+                failedLogin: false
+            }
+        case LOGIN_USER_SUCCESS:
+            return {
+                ...state,
+                isLoading: false,
+                token: action.payload.token,
+                isAuth: true,
+                user: action.payload.user.name,
+                userId: action.payload.user._id
+            }
+        case LOGIN_USER_ERROR:
+            return {
+                ...state,
+                isLoading: false,
+                message: action.payload,
+                failedLogin: true
+            }
         default:
             return state
     }
