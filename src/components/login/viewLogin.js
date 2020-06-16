@@ -113,6 +113,9 @@ class login extends Component {
             </Form>
           )}
         </Formik>
+        <div className='footer'>
+          <p className='footer-p'>PIE DE PAGINA: info legal copyright, contactanos asistencia tecnica, etc</p>
+        </div>
       </div>
     )
   }
