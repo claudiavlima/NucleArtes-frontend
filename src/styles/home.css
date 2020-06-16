@@ -19,7 +19,7 @@
     width: 80%;
     height: 100px;
 }
-.publicity {
+.publicity-menu {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -148,10 +148,42 @@ a {
     display: flex;
     flex-direction: row;
 }
+.main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 .row {
     display: flex;
     flex-direction: row;
     justify-content: center;
     margin-top: 5px;
+    width: 80%;
+}
+.col-md-8{
+    display: flex;
+    flex-direction: row;
+    width: 80%;
+}
+.publicity{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 200px;
+    height: 300px;
+    margin: 5px;
+    background: url(https://via.placeholder.com/200);
+}
+.footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0074b8;
     width: 100%;
+    height: 100px;
+}
+.footer-p {
+    color: #fff;
 }

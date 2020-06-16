@@ -14,7 +14,8 @@ class category extends Component {
         <div className='box-category' key={category._id}>
             <a href={`#${category._id}`} className='a-categories'>
                 <div className='btn-div'>
-                    <Link className='btn-name' to='/categoryProduct'>{category.name}</Link>
+                    <img src='https://via.placeholder.com/200' alt='photo' />
+                    <p>{category.name}</p>
                 </div>
             </a>
         </div>
