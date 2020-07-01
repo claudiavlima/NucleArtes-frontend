@@ -1,0 +1,38 @@
+#inputUser {
+    margin: 5px;
+    width: 325px;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+#inputEmail {
+    margin: 5px;
+    width: 325px;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+#inputPassword {
+    margin: 5px;
+    width: 325px;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+#inputLastName {
+    margin: 5px;
+    width: 325px;
+    font-weight: bolder;
+    font-size: 18px;
+}
+
+#submitButton {
+    background-color: #a31919;
+    color: #fff;
+    border: 1px solid transparent;
+    margin: 2px;
+    padding: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 15px;
+}

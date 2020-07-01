@@ -82,6 +82,7 @@ class login extends Component {
                     placeholder='password'
                   />
                 </div>
+                <a href="${preference.initPoint}">Pagar con Mercado Pago</a>
                 <div id='buttonsLoginContainer'>
                   <div className='createAccount'>
                     <Link
