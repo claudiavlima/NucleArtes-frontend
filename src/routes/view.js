@@ -3,6 +3,8 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 import { connect } from 'react-redux'
 import PublicHome from '../components/home/publicHome'
 import Login from '../components/login/viewLogin'
+import Register from '../components/register/viewRegister'
+import PrivateHome from '../components/home/privateHome'
 import store from '../redux/store'
 
 class Routes extends Component {
@@ -12,6 +14,8 @@ class Routes extends Component {
           <Switch>
             <Route exact path='/publicHome' component={PublicHome}/>
             <Route exact path='/login' component={Login}/>
+            <Route exact path='/register' component={Register}/>
+            <PrivateRoute exact path='/privateHome' component={PrivateHome}/>
             <Redirect from='/' to='/publicHome' />
           </Switch>
         </BrowserRouter>

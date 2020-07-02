@@ -15,7 +15,7 @@ class publicHome extends Component {
                 </div>
             </div>
             <div className='title'>
-            <   h1 className='text1'>NucleArtes - Todos en un mismo mundo</h1>
+            <h1 className='text1'>NucleArtes - Todos en un mismo mundo</h1>
             </div>
         </div>
         <div className='logged'>

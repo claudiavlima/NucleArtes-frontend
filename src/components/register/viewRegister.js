@@ -10,40 +10,39 @@ import { ClipLoader } from 'react-spinners'
 class register extends Component {
   render() {
     return (
-        <div className='container'>
-        <div className='header'>
+      <div className='container'>
+      <div className='header'>
+          <div className='publicity-menu'>
+              <div className='publicity-mr'>
+              </div>
+          </div>
           <div className='title'>
-            <h1>Artesanos Unidos</h1>
+          <   h1 className='text1'>NucleArtes - Todos en un mismo mundo</h1>
           </div>
-          <div className='publicity'>
-            <div className='publicity-mr'>
-            </div>
+      </div>
+      <div className='logged'>
+        <div className='options'>
+          <div className='homeMenu'>
+            <Link to='/publicHome'>Inicio</Link>
           </div>
-        </div>
-        <div className='logged'>
-          <div className='options'>
-            <div className='homeMenu'>
-              <Link to='/publicHome'>Inicio</Link>
-            </div>
-            <div className='productMenu'>
-              <Link to='/publicProduct'>Productos</Link>
-            </div>
-            <div className='categorieMenu'>
-              <Link to='/categorie'>Categorias</Link>
-            </div>
-            <div className='basketMenu'>
-              <Link to='/cart'>Carrito</Link>
-            </div>
+          <div className='productMenu'>
+            <Link to='/publicProduct'>Productos</Link>
           </div>
-          <div className='buttonSession'>
-            <div className='loginMenu'>
-              <Link to='/login'>Login</Link>
-            </div>
-            <div className='registerMenu'> 
-              <Link to='/register'>Register</Link>
-            </div>
+          <div>
+          <div className='basketMenu'>
+            <Link to='/cart'>Carrito</Link>
+          </div>
           </div>
         </div>
+        <div className='buttonSession'>
+          <div className='loginMenu'>
+            <Link to='/login'>Login</Link>
+          </div>
+          <div className='registerMenu'> 
+            <Link to='/register'>Register</Link>
+          </div>
+        </div>
+      </div>
         <div className='register-container'>
           <Formik
             initialValues={{ name: '', lastName: '', email: '', password: '', isAdmin: ''}}

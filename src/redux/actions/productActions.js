@@ -13,6 +13,7 @@ import {
     ORDER_PRODUCTS_BY_PRICE,
     SET_SELECTED_CATEGORY
  } from './types'
+ import store from '../store'
 
  // FETCH PRODUCTS
 export const fetchProducts = () => dispatch => {
