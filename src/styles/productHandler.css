@@ -23,16 +23,16 @@
 .btn-product-handler{
     margin: 2px;
     color: #fff;
-    background-color: #a31919;
-    border: 2px solid #a31919;
+    background-color: #085886;
+    border: 2px solid #085886;
     border-radius: 5px;
     cursor: pointer;
 }
 .btn-modified{
     margin: 1px;
     color: #fff;
-    background-color: #a31919;
-    border: 2px solid #a31919;
+    background-color: #085886;
+    border: 2px solid #085886;
     border-radius: 5px;
     font-size: 15px;
 }

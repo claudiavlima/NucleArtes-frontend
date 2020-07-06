@@ -1,4 +1,4 @@
-import '../../styles/privateProduct.css'
+import '../../styles/productHandler.css'
 import React, { Component } from 'react'
 import util from '../../helpers/utils'
 import { connect } from 'react-redux'
@@ -36,6 +36,7 @@ class privateProduct extends Component {
           </div>
       </div>
     ))
+    console.log(productItems)
     return <div className='row'>{productItems}</div>
   }
 }
