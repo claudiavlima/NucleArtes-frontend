@@ -11,7 +11,7 @@ import {
 } from '../actions/types'
 
 const initialState = {
-    userId: undefined,
+    id_artesano: undefined,
     isAuth: false,
     users: [],
     name: undefined,
@@ -49,7 +49,7 @@ export default function(state = initialState, action) {
                 token: action.payload.token,
                 isAuth: true,
                 user: action.payload.user.name,
-                userId: action.payload.user._id
+                id_artesano: action.payload.user._id
             }
         case LOGIN_USER_ERROR:
             return {

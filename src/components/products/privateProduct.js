@@ -12,38 +12,37 @@ import {
 
 class privateProduct extends Component {
   componentDidMount() {
-    this.props.fetchProductById(this.props.userId)
+    this.props.fetchProductById(this.props.id_artesano)
   }
-
   render() {
     const productItems = this.props.products.map(product => (
       <div className='product-private'>
         <div className='thumbnail-text-center'>
           <a href={`#${product._id}`}>
             <img src='https://via.placeholder.com/150' alt='photo' />
-            <p>{product.tittle}</p>
+            <p>{product.title}</p>
           </a>
-          <b>{util.formatCurrency(product.price)}</b>
+          <b>${product.price}</b>
         </div>
           <div className='btn-product'>
           <button
             className='btn-product-handler'
-            onClick={() => this.props.deleteProduct(product._id)} 
+            onClick={() => {if(window.confirm('Desea eliminar el producto?'))
+          {this.props.deleteProduct(product._id)}}} 
           >
-            Eliminar Producto
+            Borrar Producto
           </button>
             <Link className='btn-modified' to='/modifiedProduct'>Modificar Producto</Link>
           </div>
       </div>
     ))
-    console.log(productItems)
     return <div className='row'>{productItems}</div>
   }
 }
 
 const mapStateToProps = state => ({
   products: state.products.items,
-  userId: state.users.userId
+  id_artesano: state.users.id_artesano
 })
 
 const mapDispatchToProps = dispatch => {

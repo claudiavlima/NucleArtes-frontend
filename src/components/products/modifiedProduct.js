@@ -1,22 +1,23 @@
 import '../../styles/home.css'
-import '../../styles/formProduct.css'
+import '../../styles/modifiedProduct.css'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Formik, Form, Field } from 'formik'
-import { postProduct } from '../../redux/actions/productActions'
+import { updateProduct } from '../../redux/actions/productActions'
 import { fetchCategories } from '../../redux/actions/categorieActions'
 import { Link } from 'react-router-dom'
 import { isAuth, logOut } from '../../redux/actions/loginActions'
 
 
-class formProduct extends Component {
+class modifiedProduct extends Component {
   componentDidMount() {
     this.props.fetchCategories()
   }
+
   render() {
     return (
-      <div className='container'>
+        <div className='container'>
         <div className='header'>
             <div className='publicity-menu'>
                 <div className='publicity-mr'>
@@ -61,27 +62,28 @@ class formProduct extends Component {
             </div>
           </div>
         )}
+        <hr />
         <div className='row'>
-        <div className='form-add'>
-            <h4 id='title-form'>Agregar nuevo producto</h4>
+        <div className='form-modified'>
+            <h4>Modificar un producto</h4>
             <div className='form-container'>
               <Formik
                 initialValues={{
                   photo: 'https://via.placeholder.com/150',
-                  title: '',
+                  tittle: '',
                   description: '',
                   price: 0,
                   stock: 0,
                   img:''
                 }}
                 onSubmit={values => {
-                  const id = this.props.id_artesano
+                  const id = this.props.userId
                   const newProduct = {
                     ...values,
-                    id_artesano: id
+                    userId: id
                   }
-                  this.props.postProduct(newProduct).then(res => {
-                    if (res.type === 'ADD_PRODUCT_SUCCESS') {
+                  this.props.updateProduct(newProduct).then(res => {
+                    if (res.type === 'UPDATE_PRODUCT_SUCCESS') {
                       this.props.history.push('/privateProduct')
                     }
                   })
@@ -92,12 +94,12 @@ class formProduct extends Component {
                     onSubmit={handleSubmit}
                     style={{ display: 'flex', flexDirection: 'column'}}>
                     <div className='container-form'>
-                    <Field id='title-product' type='text' name='title' placeholder='Titulo'/>
+                    <Field id='title-product' type='text' name='tittle' placeholder='Titulo'/>
                     <Field id='product-description' type='text' name='description' placeholder='Descripción'/>
                     <Field id='product-price' type='number' name='price' placeholder='Precio' />
                     <Field id='product-stock' type='number' name='stock' placeholder='Stock' />
                     <Field id='product-img' type='text' name='img' placeholder='Imagen' />
-                    <Field id='product-select' as="select" name="category_name">
+                    <Field as="select" name="category_name" id='product-select'>
                     {this.props.categories.map(category => 
                       (<option value={category.category_name}>{category.name}</option>))}
                     </Field>
@@ -121,7 +123,7 @@ const mapStateToProps = state => {
     isLoading: state.isLoading,
     isAuth: state.isAuth,
     productSelected: state.products.productSelected,
-    id_artesano: state.users.id_artesano,
+    userId: state.users.userId,
     categories: state.categories.items,
     category_name: state.categories.category_name
   }
@@ -129,9 +131,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return bindActionCreators(
-    { postProduct, isAuth, logOut, fetchCategories },
+    { updateProduct, isAuth, logOut, fetchCategories },
     dispatch
   )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(formProduct)
+export default connect(mapStateToProps, mapDispatchToProps)(modifiedProduct)
