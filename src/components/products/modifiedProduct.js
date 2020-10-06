@@ -94,7 +94,7 @@ class modifiedProduct extends Component {
                     onSubmit={handleSubmit}
                     style={{ display: 'flex', flexDirection: 'column'}}>
                     <div className='container-form'>
-                    <Field id='title-product' type='text' name='tittle' placeholder='Titulo'/>
+                    <Field id='title-product' type='text' name='title' placeholder='Titulo'/>
                     <Field id='product-description' type='text' name='description' placeholder='Descripción'/>
                     <Field id='product-price' type='number' name='price' placeholder='Precio' />
                     <Field id='product-stock' type='number' name='stock' placeholder='Stock' />

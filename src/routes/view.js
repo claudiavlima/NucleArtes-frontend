@@ -8,6 +8,8 @@ import PrivateHome from '../components/home/privateHome'
 import PrivateProduct from '../components/products/viewPrivateProduct'
 import FormProduct from '../components/products/formProduct'
 import ModifiedProduct from '../components/products/modifiedProduct'
+import PublicProduct from '../components/products/viewPublicProduct'
+import Cart from '../components/carts/viewCart'
 import store from '../redux/store'
 
 class Routes extends Component {
@@ -18,6 +20,8 @@ class Routes extends Component {
             <Route exact path='/publicHome' component={PublicHome}/>
             <Route exact path='/login' component={Login}/>
             <Route exact path='/register' component={Register}/>
+            <Route exact path='/publicProduct' component={PublicProduct}/>
+            <Route exact path='/cart' component={Cart}/>
             <PrivateRoute exact path='/privateHome' component={PrivateHome}/>
             <PrivateRoute exact path='/privateProduct' component={PrivateProduct}/>
             <PrivateRoute exact path='/formProduct' component={FormProduct}/>

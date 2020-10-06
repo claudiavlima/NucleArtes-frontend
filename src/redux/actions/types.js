@@ -26,3 +26,7 @@ export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS'
 export const ADD_USER_ERROR = 'ADD_USER_ERROR'
 export const USER_LOGOUT = 'USER_LOGOUT'
 export const IS_AUTH = 'IS_AUTH'
+
+// CART TYPE ACTIONS
+export const ADD_TO_CART = 'ADD_TO_CART'
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
