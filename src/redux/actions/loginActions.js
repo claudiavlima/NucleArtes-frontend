@@ -30,7 +30,6 @@ export const loginAccount = data => {
         .then(res => res.json())
         .then(res => {
           if (res.msg !== 'Invalid Email or password') {
-            console.log(res)
             return dispatch({
               type: LOGIN_USER_SUCCESS,
               payload: res
@@ -74,11 +73,9 @@ export const postUser = user => {
         },
         body: JSON.stringify(user)
       }
-      console.log('options', options)
       return fetch(`http://localhost:5000/api/users`, options)
         .then(res => res.json())
         .then(data => {
-          console.log('POST USER', data)
           if (!Object.entries(data).length) {
             return Promise.reject(data)
           }

@@ -59,7 +59,6 @@ export default function ( state = initialState, action) {
             isLoading: true
         }
         case UPDATE_PRODUCT_SUCCESS: {
-            console.log(action.payload)
             const newProductUpdate = [...state.items]
             const productToUpdate = newProductUpdate.findIndex(
             ele => ele._id === action.payload._id
@@ -83,7 +82,6 @@ export default function ( state = initialState, action) {
             isLoading: true
         }
         case DELETE_PRODUCT_SUCCESS:
-        console.log(action.payload)
         const newProducts = [...state.items]
         const productToDelete = newProducts.findIndex(
             ele => ele._id === action.payload._id

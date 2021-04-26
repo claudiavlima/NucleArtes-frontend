@@ -21,7 +21,9 @@ const initialState = {
     logged: false,
     token: '',
     failedLogin: false,
-    failedRegister: false
+    failedRegister: false,
+    role: undefined,
+    userAuth: undefined,
 }
 
 export default function(state = initialState, action) {
@@ -49,7 +51,9 @@ export default function(state = initialState, action) {
                 token: action.payload.token,
                 isAuth: true,
                 user: action.payload.user.name,
-                id_artesano: action.payload.user._id
+                id_artesano: action.payload.user._id,
+                role: action.payload.user.role,
+                userAuth: action.payload.user,
             }
         case LOGIN_USER_ERROR:
             return {

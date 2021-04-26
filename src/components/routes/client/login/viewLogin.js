@@ -1,8 +1,8 @@
-import '../../styles/login.css'
+import '../../../../styles/login.css'
 import React, { Component } from 'react'
 import { Formik, Form, Field } from 'formik'
 import { connect } from 'react-redux'
-import { loginAccount } from '../../redux/actions/loginActions'
+import { loginAccount } from '../../../../redux/actions/loginActions'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom'
 import { ClipLoader } from 'react-spinners'
@@ -15,9 +15,7 @@ class login extends Component {
 
   //COMPARE VALUES WITH DATABASE
   getLogin = values => {
-    console.log(this.props)
     this.props.loginAccount(values).then(response => {
-      console.log(response)
       if (this.props.isAuth) {
         this.props.history.push('/privateHome')
       }
@@ -26,44 +24,12 @@ class login extends Component {
   render() {
     return (
       <div className='container'>
-      <div className='header'>
-          <div className='publicity-menu'>
-              <div className='publicity-mr'>
-              </div>
-          </div>
-          <div className='title'>
-          <   h1 className='text1'>NucleArtes - Todos en un mismo mundo</h1>
-          </div>
-      </div>
-      <div className='logged'>
-        <div className='options'>
-          <div className='homeMenu'>
-            <Link to='/publicHome'>Inicio</Link>
-          </div>
-          <div className='productMenu'>
-            <Link to='/publicProduct'>Productos</Link>
-          </div>
-          <div>
-          <div className='basketMenu'>
-            <Link to='/cart'>Carrito</Link>
-          </div>
-          </div>
-        </div>
-        <div className='buttonSession'>
-          <div className='loginMenu'>
-            <Link to='/login'>Login</Link>
-          </div>
-          <div className='registerMenu'> 
-            <Link to='/register'>Register</Link>
-          </div>
-        </div>
-      </div>
         <Formik
           initialValues={{ email: '', password: '' }}
           onSubmit={this.getLogin}
         >
           {({ handleSubmit }) => (
-            <Form 
+            <Form
               id='form-login'
               onSubmit={handleSubmit}
             >
@@ -93,13 +59,13 @@ class login extends Component {
                     </Link>
                   </div>
                   {!this.props.isLoading ? (
-                      <button
-                        type='submit'
-                        id='buttonLogin'
-                        className='buttonLogin'
-                      >
-                        Log In
-                      </button>
+                    <button
+                      type='submit'
+                      id='buttonLogin'
+                      className='buttonLogin'
+                    >
+                      Log In
+                    </button>
                   ) : (
                     <ClipLoader size={50} color={'black'} loading />
                   )}

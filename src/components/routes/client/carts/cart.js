@@ -4,6 +4,9 @@ import util from '../../helpers/utils'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { removeFromCart } from '../../redux/actions/cartActions'
+import { postSales } from '../../redux/actions/salesActions'
+import { setMercadoPagoPreferences } from '../../redux/actions/mercadoPagoActions'
+
 
 class cart extends Component {
   render() {
@@ -15,7 +18,7 @@ class cart extends Component {
         ) : (
           <div>you have {cartItems.length} products in the basket</div>
         )}
-        {cartItems.length > 0 && (
+        { cartItems.length > 0 && (
           <div className='cart-product'>
             <ul>
               {cartItems.map(item => (
@@ -41,13 +44,29 @@ class cart extends Component {
                 cartItems.reduce((a, c) => a + c.price * c.count, 0)
               )}
             </b>
-            <button className='btn btn-primary' onClick={()=> {if (this.props.isAuth)
-              //aca paso la accion que quiero validar por props
-             {}
-              else {window.alert('Debe Registrarse')
-              return}
-            }}>checkout</button>
+            <button className='btn btn-primary' onClick={()=>
+            {
+              this.props.setMercadoPagoPreferences(this.props.cartItems)
+              // const sale = {
+              //   client: this.props.userAuth._id,
+              //   total: cartItems.reduce((a, c) => a + c.price * c.count, 0),
+              //   products: cartItems.map((item) => {
+              //     return {
+              //       productId: item._id,
+              //       quantity: item.count,
+              //       name: item.title,
+              //       price: item.price
+              //     }
+              //   }),
+              //   date: moment().format('DD-MM-YYYY'),
+              // }
+              // this.props.postSales(sale)
+            }
+            }>checkout</button>
+            <div id='mercadoForm'>
+            <div/>
           </div>
+        </div>
         )}
       </div>
     )
@@ -55,11 +74,12 @@ class cart extends Component {
 }
 
 const mapStateToProps = state => ({
-  cartItems: state.cart.items
+  cartItems: state.cart.items,
+  userAuth: state.users.userAuth,
 })
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ removeFromCart }, dispatch)
+  return bindActionCreators({ removeFromCart, postSales, setMercadoPagoPreferences }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(cart)

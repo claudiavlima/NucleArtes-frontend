@@ -50,11 +50,9 @@ export const postProduct = product => {
             },
             body: JSON.stringify(product)
         }
-        console.log('options', options)
         return fetch('http://localhost:5000/api/products', options)
             .then( res => res.json())
             .then( data => {
-                console.log('POST PRODUCT', data)
                 if (!Object.entries(data).length) {
                     return Promise.reject(data)
                 }
@@ -94,7 +92,6 @@ export const deleteProduct = code => {
       return fetch(`http://localhost:5000/api/products/${code}`, options)
         .then(res => res.json())
         .then(data => {
-          console.log('DELETE PRODUCT', data)
           if (!Object.entries(data).length) {
             return Promise.reject(data)
           }
@@ -114,7 +111,6 @@ export const deleteProduct = code => {
 
 // UPDATE PRODUCTS
 export const updateProduct = product => {
-    console.log(product)
     return dispatch => {
       dispatch({
         type: UPDATE_PRODUCT_PENDING
@@ -134,7 +130,6 @@ export const updateProduct = product => {
       return fetch(`http://localhost:5000/api/products/${product._id}`, options)
         .then(res => res.json())
         .then(data => {
-          console.log('UPDATE PRODUCT', data)
           if (!Object.entries(data).length) {
             return Promise.reject(data)
           }
@@ -175,7 +170,6 @@ export const setProductCategory = categoryName => {
 //SORT PRODUCTS BY PRICE
 export const sortProducts = (products, sort) => dispatch => {
     const newProduct = [...products]
-    console.log(newProduct)
     if (sort !== '') {
       newProduct.sort((a, b) =>
         sort === 'lowestprice'

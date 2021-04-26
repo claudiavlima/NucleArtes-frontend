@@ -1,28 +1,16 @@
-import '../../styles/home.css'
+import '../../styles/productPrivate.css'
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { postProduct, updateProduct } from '../../redux/actions/productActions'
 import { Link } from 'react-router-dom'
-import { isAuth, logOut} from '../../redux/actions/loginActions'
+import { isAuth, logOut } from '../../redux/actions/loginActions'
+import Product from './privateProduct'
 
 
-
-class privateHome extends Component {
-  capturarDatos() {
-    const productToUpdate = this.props.products.find(
-      product => product._id === this.props.productSelected
-    )
-    return {
-      tittle: productToUpdate.tittle,
-      description: productToUpdate.description,
-      availableSize: productToUpdate.availableSize,
-      price: productToUpdate.price
-    }
-  }
-  render() {
-    return (
-      <div className='container'>
+class viewProductPrivate extends Component {
+    render() {
+        return (
+            <div className='container'>
         <div className='header'>
             <div className='publicity-menu'>
                 <div className='publicity-mr'>
@@ -67,32 +55,33 @@ class privateHome extends Component {
             </div>
           </div>
         )}
-        <hr />
-        <div className='row'>
-          <div className='categoriesPrivate'>
-          </div>
-        </div>
-      </div>
-    )
-  }
+                <div className='row'>
+                    <div className='col-md-8'>
+                        <Product/>
+                    </div>
+                    <div className='col-md-4'>
+                        <div className='class-add'>
+                            <h3 className='title-add'>Agregar Producto</h3>
+                            <Link className='btn-add' to='/formProduct'>+</Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 }
 
 const mapStateToProps = state => {
-  return {
-    products: state.products.items,
-    name: state.users.user,
-    isLoading: state.isLoading,
-    isAuth: state.isAuth,
-    productSelected: state.products.productSelected,
-    isAdmin: state.users.isAdmin
-  }
+    return {
+        cart: state.cart,
+        isLoading: state.isLoading,
+        name: state.users.user,
+        isAuth: state.isAuth
+    }
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators(
-    { postProduct, updateProduct, isAuth, logOut },
-    dispatch
-  )
+    return bindActionCreators({ isAuth, logOut}, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(privateHome)
+export default connect(mapStateToProps, mapDispatchToProps)(viewProductPrivate)

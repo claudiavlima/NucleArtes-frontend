@@ -28,7 +28,7 @@ class privateProduct extends Component {
           <button
             className='btn-product-handler'
             onClick={() => {if(window.confirm('Desea eliminar el producto?'))
-          {this.props.deleteProduct(product._id)}}} 
+          {this.props.deleteProduct(product._id)}}}
           >
             Borrar Producto
           </button>
