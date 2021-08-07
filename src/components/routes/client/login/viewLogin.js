@@ -16,8 +16,12 @@ class login extends Component {
   //COMPARE VALUES WITH DATABASE
   getLogin = values => {
     this.props.loginAccount(values).then(response => {
-      if (this.props.isAuth) {
-        this.props.history.push('/privateHome')
+      if (response.payload.user.category === 'admin') {
+        console.log('ENTRE AL IF')
+        return this.props.history.push('/admin/products');
+      } else {
+        console.log('ENTRE AL SEGUNDO IF')
+        return this.props.history.push('/');
       }
     })
   }

@@ -1,0 +1,35 @@
+.container {
+	display: flex;
+    width: 100%;
+    height: 70vh;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.billingInformation {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	height: auto;
+}
+
+.containerForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 50%;
+	height: auto;
+}
+
+.column, .containerInput {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.containerForm {
+	margin-top: 50px;
+	margin-bottom: 30px;
+}

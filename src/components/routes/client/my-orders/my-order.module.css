@@ -1,0 +1,8 @@
+.container {
+    display: flex;
+    height: 70vh;
+    flex-wrap: wrap;
+    overflow-y: auto;
+    justify-content: center;
+    align-items: center;
+}

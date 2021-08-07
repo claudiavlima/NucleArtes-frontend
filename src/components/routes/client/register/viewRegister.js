@@ -12,7 +12,7 @@ class register extends Component {
       <div className='container'>
         <div className='register-container'>
           <Formik
-            initialValues={{ name: '', lastName: '', email: '', password: '', role: 'client' }}
+            initialValues={{ name: '', lastName: '', email: '', password: '', category: 'client' }}
             onSubmit={values => {
               this.props.postUser(values).then(res => {
                 if (res.type === 'ADD_USER_SUCCESS') {
@@ -30,14 +30,16 @@ class register extends Component {
                 <Field type='text' name='name' id='inputUser' placeholder='Ingresa tu nombre' />
                 <label>Apellido:</label>
                 <Field type='text' name='lastName' id='inputLastName' placeholder='Ingresa tu apellido' />
+                <label>Dni:</label>
+                <Field type='text' name='dni' id='inputDni' placeholder='Ingresa tu DNI' />
                 <label>Email:</label>
                 <Field type='text' name='email' id='inputEmail' placeholder='ejemplo@hotmail.com' />
                 <label>Contraseña:</label>
                 <Field type='password' name='password' id='inputPassword' placeholder='password' />
                 <label>Cliente:</label>
-                <Field type='radio' name='role' id='client-radio' value={'client'} />
+                <Field type='radio' name='category' id='client-radio' value={'client'} />
                 <label>Artesano:</label>
-                <Field type='radio' name='role' id='artesano-radio' value={'artesano'} />
+                <Field type='radio' name='category' id='artesano-radio' value={'admin'} />
                 <div className='register-buttons'>
                   {!this.props.isLoading ? (
                     <button id='submitButton' type='submit'>Submit</button>

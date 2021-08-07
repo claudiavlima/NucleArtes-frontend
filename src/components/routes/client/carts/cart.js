@@ -1,32 +1,31 @@
-import '../../styles/cart.css'
 import React, { Component } from 'react'
-import util from '../../helpers/utils'
+import util from '../../../../helpers/utils'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { removeFromCart } from '../../redux/actions/cartActions'
-import { postSales } from '../../redux/actions/salesActions'
-import { setMercadoPagoPreferences } from '../../redux/actions/mercadoPagoActions'
-
+import { removeFromCart } from '../../../../redux/actions/cartActions'
+import { postOrder } from '../../../../redux/actions/orderActions'
+import { setMercadoPagoPreferences } from '../../../../redux/actions/mercadoPagoActions'
+import css from './cart.module.css'
 
 class cart extends Component {
   render() {
-    const { cartItems } = this.props
+    const { cartItems } = this.props;
     return (
-      <div className='alert-info'>
+      <div className={css.alertInfo}>
         {cartItems.length === 0 ? (
           'Carrito vacio'
         ) : (
           <div>you have {cartItems.length} products in the basket</div>
         )}
         { cartItems.length > 0 && (
-          <div className='cart-product'>
+          <div className={css.cartProduct}>
             <ul>
               {cartItems.map(item => (
                 <li key={item.id}>
                   <b>{item.title}</b>
                   <button
                     style={{ float: 'right' }}
-                    className='btn-danger'
+                    className={css.btnDanger}
                     onClick={() =>
                       this.props.removeFromCart(this.props.cartItems, item)
                     }
@@ -44,29 +43,25 @@ class cart extends Component {
                 cartItems.reduce((a, c) => a + c.price * c.count, 0)
               )}
             </b>
-            <button className='btn btn-primary' onClick={()=>
-            {
-              this.props.setMercadoPagoPreferences(this.props.cartItems)
-              // const sale = {
-              //   client: this.props.userAuth._id,
-              //   total: cartItems.reduce((a, c) => a + c.price * c.count, 0),
-              //   products: cartItems.map((item) => {
-              //     return {
-              //       productId: item._id,
-              //       quantity: item.count,
-              //       name: item.title,
-              //       price: item.price
-              //     }
-              //   }),
-              //   date: moment().format('DD-MM-YYYY'),
-              // }
-              // this.props.postSales(sale)
+            {this.props.isAuth ?
+              (
+                <>
+                  <button className={css.btnPrimary} onClick={() => {
+                    this.props.history.push('/sales')
+                  }}>Ir a Pagar</button>
+                  <div id='mercadoForm'>
+                    <div />
+                  </div>
+                </>
+              )
+              :
+              (
+                <button onClick={() => this.props.history.push('/login')}>
+                  Iniciar sesion
+                </button>
+              )
             }
-            }>checkout</button>
-            <div id='mercadoForm'>
-            <div/>
           </div>
-        </div>
         )}
       </div>
     )
@@ -75,11 +70,11 @@ class cart extends Component {
 
 const mapStateToProps = state => ({
   cartItems: state.cart.items,
-  userAuth: state.users.userAuth,
+  isAuth: state.users.isAuth,
 })
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ removeFromCart, postSales, setMercadoPagoPreferences }, dispatch)
+  return bindActionCreators({ removeFromCart, postOrder, setMercadoPagoPreferences }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(cart)

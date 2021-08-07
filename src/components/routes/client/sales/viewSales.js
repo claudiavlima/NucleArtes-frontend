@@ -1,102 +1,88 @@
 import React, { Component, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Link } from 'react-router-dom'
-import { Form, Formik, Field } from 'formik'
-import { fetchCategories } from '../../redux/actions/categorieActions'
-import { setProductCategory } from '../../redux/actions/productActions'
-import Accordion from '@material-ui/core/Accordion';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import AccordionSummary from '@material-ui/core/AccordionSummary';
-import AccordionDetails from '@material-ui/core/AccordionDetails';
-import Typography from '@material-ui/core/Typography';
+import { fetchCategories } from '../../../../redux/actions/categorieActions'
+import { setProductCategory } from '../../../../redux/actions/productActions'
 import TextField from '@material-ui/core/TextField';
-import Cart from '../carts/cart';
-import '../../styles/billingInformationForm.css'
+import css from './sales.module.css';
+import { setMercadoPagoPreferences } from '../../../../redux/actions/mercadoPagoActions';
+import { postOrder } from '../../../../redux/actions/orderActions';
+import moment from 'moment';
+import { cleanCart } from '../../../../redux/actions/cartActions';
 
 class viewSales extends Component {
   componentDidMount() {
-    console.log('USER', this.props.userAuth)
+    this.props.setMercadoPagoPreferences(this.props.cartItems)
   }
   render() {
+
+    const crateOrder = () => {
+      const sale = {
+        client: this.props.user._id,
+        total: this.props.cartItems.reduce((a, c) => a + c.price * c.count, 0),
+        products: this.props.cartItems.map((item) => {
+          return {
+            productId: item._id,
+            quantity: item.count,
+            name: item.title,
+            price: item.price
+          }
+        }),
+        date: moment().format('DD-MM-YYYY'),
+      }
+      this.props.postOrder(sale)
+      this.props.cleanCart([])
+      this.props.history.push('/')
+    };
+
+
+
     return (
-    <>
-      <div className='container'>
-        <div className='header'>
-          <div className='publicity-menu'>
-            <div className='publicity-mr'>
-            </div>
-          </div>
-          <div className='title'>
-            <h1 className='text1'>NucleArtes - Todos en un mismo mundo</h1>
-          </div>
-        </div>
-        <div className='logged'>
-          <div className='options'>
-            <div className='homeMenu'>
-              <Link to='/privateHome'>Inicio</Link>
-            </div>
-            <div className='productMenu'>
-              <Link to='/privateClientProduct'>Productos</Link>
-            </div>
-            <div>
-              <div className='basketMenu'>
-                <Link to='/sales'>Carrito</Link>
-              </div>
-            </div>
-          </div>
-          <div className='buttonSession'>
-            <div className='loginMenu'>
-              <Link to='/login'>Login</Link>
-            </div>
-            <div className='registerMenu'>
-              <Link to='/register'>Register</Link>
-            </div>
-          </div>
-        </div>
-        <div className='row'>
-          <div className='billingInformation'>
-            <div className='containerForm'>
-              <div className='column'>
+      <>
+        <div className={css.container}>
+          <div className={css.billingInformation}>
+            <div className={css.containerForm}>
+              <div className={css.column}>
                 <label>Datos de facturación</label>
-                <div className='containerInput'>
+                <div className={css.containerInput}>
                   <label>Nombre:</label>
-                  <TextField value={this.props.userAuth.name} />
+                  <TextField value={this.props.user.name} />
                 </div>
-                <div className='containerInput'>
+                <div className={css.containerInput}>
                   <label>Apellido:</label>
-                  <TextField value={this.props.userAuth.lastName} />
+                  <TextField value={this.props.user.lastName} />
                 </div>
-                <div className='containerInput'>
+                <div className={css.containerInput}>
                   <label>Email:</label>
-                  <TextField value={this.props.userAuth.email} />
+                  <TextField value={this.props.user.email} />
                 </div>
               </div>
             </div>
-          </div>
-          <div className='shoppingCart'>
-            <Cart />
+            <div className={css.containerButton} onClick={() => crateOrder()}>
+              <div id='mercadoForm'>
+                <div />
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    </>
+      </>
     )
   }
 }
 
 const mapStateToProps = state => {
   return {
-    cart: state.cart,
+    cartItems: state.cart.items,
     isLoading: state.isLoading,
-    isAuth: state.isAuth,
+    isAuth: state.users.isAuth,
     product: state.products.items,
     categories: state.categories.items,
-    userAuth: state.users.userAuth,
+    user: state.users.user,
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ fetchCategories, setProductCategory }, dispatch)
+  return bindActionCreators({ fetchCategories, setProductCategory, setMercadoPagoPreferences, postOrder, cleanCart }, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(viewSales)

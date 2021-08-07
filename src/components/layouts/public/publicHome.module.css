@@ -36,7 +36,7 @@
   height: 100px;
 }
 
-.logged {
+.menu {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -48,6 +48,7 @@
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
+  align-items: center;
   width: 50%;
   height: 50px;
 }
@@ -158,6 +159,14 @@ a {
   width: 100%;
 }
 
+.childrenContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  width: 100%;
+}
+
 .row {
   display: flex;
   flex-direction: row;
@@ -187,4 +196,16 @@ a {
 
 .footerP {
   color: #fff;
+}
+
+.logUser {
+  color: white;
+}
+
+.menuMyProfile, .menuProduct, .menuLogout {
+  color: var(--color-black);
+}
+
+.MuiMenu-paper {
+  top: 20px !important;
 }

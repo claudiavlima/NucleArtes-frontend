@@ -1,0 +1,12 @@
+.modal {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 250px;
+  width: 50%;
+  height: 40vh;
+  margin-left: 25%;
+  background-color: var(--color-primary) !important;
+  color: var(--color-white);
+}

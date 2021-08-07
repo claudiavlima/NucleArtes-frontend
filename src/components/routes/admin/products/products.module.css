@@ -1,0 +1,46 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  width: 100%;
+}
+
+.fabButtonContainer {
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.mainTitle {
+  display: flex;
+  align-items: center;
+  width: calc(100% - 50px);
+  justify-content: space-between;
+  padding: 20px;
+  font-size: 20px;
+}
+
+.fabButton {
+	background-color: var(--color-primary) !important;
+	color: var(--color-white) !important;
+  margin-right: 80px;
+}
+
+.pageDivider {
+	border-style: inset;
+	border-width: 0.5px;
+	margin-bottom: 20px;
+	border-color: lightgray;
+}
+
+.containerPaper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.paper {
+  width: 80%;
+}

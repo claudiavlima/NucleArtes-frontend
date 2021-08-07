@@ -1,0 +1,23 @@
+.alertInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  width: 50%;
+  height: 200px;
+  background-color: #8ba1a5;
+}
+.btnDanger {
+  border: 2px solid #a31919;
+  border-radius: 2px;
+  background-color: #a31919;
+}
+
+.cartProduct {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}

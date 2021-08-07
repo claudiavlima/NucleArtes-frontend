@@ -4,11 +4,13 @@ import categoryReducer from './categorieReducer'
 import loginReducer from './loginReducer'
 import cartReducer from './cartReducer'
 import salesReducer from './salesReducer'
+import { reducer as form, FormStateMap } from 'redux-form';
 
 export default combineReducers({
     products: productReducer,
     categories: categoryReducer,
     users: loginReducer,
     cart: cartReducer,
-    sales: salesReducer,
+    order: salesReducer,
+    form,
 })

@@ -15,7 +15,10 @@ const Category: React.FC<ReduxProps> = (props) => {
   return (
     <>
       <div className={css.container}>
-
+        {/* {categories.map((category: any) => (
+          <CategoryCard />
+        ))
+        } */}
       </div>
     </>
   )

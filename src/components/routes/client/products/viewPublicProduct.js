@@ -6,17 +6,17 @@ import Product from './publicProduct'
 import { Form, Formik, Field } from 'formik'
 import { fetchCategories } from '../../../../redux/actions/categorieActions';
 import { setProductCategory, fetchProducts } from '../../../../redux/actions/productActions'
-
+import css from './products.module.css';
 class viewPublicProduct extends Component {
   componentDidMount() {
     this.props.fetchCategories();
     this.props.fetchProducts();
-  }
+  } css
   render() {
     return (
-      <div className='container'>
-        <div className='row'>
-          <div className='filter-product'>
+      <div className={css.container}>
+        <div className={css.row}>
+          <div className={css.filterProduct}>
             <Formik
               initialValues={{
                 category_name: ''
@@ -29,19 +29,19 @@ class viewPublicProduct extends Component {
                 <Form
                   onSubmit={handleSubmit}
                   style={{ display: 'flex', flexDirection: 'column' }}>
-                  <div className='container-form'>
+                  <div className={css.containerForm}>
                     <Field as="select" name="category_name">
                       <option value='TODOS'>Todos</option>
                       {this.props.categories.map(category =>
                         (<option value={category.category_name}>{category.name}</option>))}
                     </Field>
                   </div>
-                  <button id='btn-form' type='submit'>Submit</button>
+                  <button id={css.btnForm} type='submit'>Submit</button>
                 </Form>
               )}
             </Formik>
           </div>
-          <div className='col-md-8'>
+          <div className={css.containerProducts}>
             <Product />
           </div>
         </div>

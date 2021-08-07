@@ -11,10 +11,8 @@ import {
 } from '../actions/types'
 
 const initialState = {
-    id_artesano: undefined,
     isAuth: false,
     users: [],
-    name: undefined,
     error: null,
     isLoading: false,
     message: undefined,
@@ -22,11 +20,10 @@ const initialState = {
     token: '',
     failedLogin: false,
     failedRegister: false,
-    role: undefined,
-    userAuth: undefined,
+    user: undefined,
 }
 
-export default function(state = initialState, action) {
+export default function (state = initialState, action) {
     switch (action.type) {
         case IS_AUTH:
             return {
@@ -36,7 +33,7 @@ export default function(state = initialState, action) {
             }
         case USER_LOGOUT:
             return {
-                state: initialState
+                ...initialState,
             }
         case LOGIN_USER_PENDING:
             return {
@@ -50,10 +47,7 @@ export default function(state = initialState, action) {
                 isLoading: false,
                 token: action.payload.token,
                 isAuth: true,
-                user: action.payload.user.name,
-                id_artesano: action.payload.user._id,
-                role: action.payload.user.role,
-                userAuth: action.payload.user,
+                user: action.payload.user,
             }
         case LOGIN_USER_ERROR:
             return {
@@ -70,13 +64,13 @@ export default function(state = initialState, action) {
             }
         case ADD_USER_SUCCESS: {
             const newUser = action.payload.user
-            const user = state.users.length ? [...state.users, newUser]: [newUser]
-                return {
-                    ...state,
-                    isLoading: false,
-                    users: user
-                }
+            const user = state.users.length ? [...state.users, newUser] : [newUser]
+            return {
+                ...state,
+                isLoading: false,
+                users: user
             }
+        }
         case ADD_USER_ERROR:
             return {
                 ...state,
