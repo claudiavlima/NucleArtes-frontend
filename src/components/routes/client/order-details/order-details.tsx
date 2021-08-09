@@ -14,41 +14,48 @@ const OrderDetails: React.FC<ReduxProps> = (props) => {
     getOrderById(user._id);
   }, [getOrderById]);
 
-  console.log('selected order', selectedOrder)
+  const renderProducts = () =>
+    <div>
+      {selectedOrder.products.map((product: any) => {
+        return (
+          <div className={css.containerProducts}>
+            <div className={css.orderDates}>
+              {`${product.name} x${product.quantity} = $${product.price * product.quantity} `}
+            </div>
+          </div>
+        )
+      })
+      }
+    </div>
+
+  const renderSelectedOrder = () =>
+    <div className={css.form}>
+      <h4 className={css.title}>Detalle de la compra:</h4>
+      <Paper className={css.paper}>
+        <div className={css.formContainer}>
+          <div className={css.orderDates}>
+            {`Cliente: ${selectedOrder.client.name} ${selectedOrder.client.lastName}`}
+          </div>
+          <div className={css.orderDates}>
+            {`Dni: ${selectedOrder.client.dni}`}
+          </div>
+          <div className={css.orderDates}>
+            {`Email: ${selectedOrder.client.email}`}
+          </div>
+          <div className={css.orderDates}>
+            Productos:
+          </div>
+          <div>
+            {renderProducts()}
+          </div>
+        </div>
+      </Paper>
+    </div>
+
   return (
     <>
       <div className={css.container}>
-        <div className={css.form}>
-          <h4 className={css.title}>Detalle de la compra:</h4>
-          <Paper className={css.paper}>
-            <div className={css.formContainer}>
-              <div className={css.orderDates}>
-                {`Cliente: ${selectedOrder.client.name} ${selectedOrder.client.lastName}`}
-              </div>
-              <div className={css.orderDates}>
-                {`Dni: ${selectedOrder.client.dni}`}
-              </div>
-              <div className={css.orderDates}>
-                {`Email: ${selectedOrder.client.email}`}
-              </div>
-              <div className={css.orderDates}>
-                Productos:
-              </div>
-              <div>
-                {selectedOrder.products.map((product: any) => {
-                  return (
-                    <div className={css.containerProducts}>
-                      <div className={css.orderDates}>
-                        {`${product.name} x${product.quantity} = $${product.price * product.quantity} `}
-                      </div>
-                    </div>
-                  )
-                })
-                }
-              </div>
-            </div>
-          </Paper>
-        </div>
+        {renderSelectedOrder()}
       </div>
     </>
   );

@@ -19,14 +19,14 @@ export interface Props extends ReduxProps {
 const PublicHome: React.FC<Props> = (props) => {
   const { children, isAuth, logOut } = props;
 
-  const [anchorEl, setAnchorEl] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
-  const handleOpen = () => {
-    setAnchorEl(true);
+  const handleOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
-    setAnchorEl(false);
+    setAnchorEl(null);
   };
 
   return (
@@ -62,9 +62,9 @@ const PublicHome: React.FC<Props> = (props) => {
                   <AccountCircleOutlinedIcon className={css.logUser} />
                 </Button>
                 <Menu
-                  id="userMenu"
+                  anchorEl={anchorEl}
                   keepMounted
-                  open={anchorEl}
+                  open={Boolean(anchorEl)}
                   onClose={handleClose}
                 >
                   {/* <MenuItem><Link className={css.menuMyProfile} to='/profile'>Mi Perfil</Link></MenuItem> */}
