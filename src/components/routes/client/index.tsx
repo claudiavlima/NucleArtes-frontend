@@ -9,6 +9,7 @@ import Sales from '../client/sales/viewSales';
 import Cart from '../client/carts/cart';
 import MyOrders from '../client/my-orders';
 import OrderDetails from '../client/order-details';
+import ForgotPassword from './forgot-password';
 
 const ClientRoutes: React.FC = () => {
   const location = useLocation();
@@ -23,6 +24,7 @@ const ClientRoutes: React.FC = () => {
         <Route exact={true} path='/sales' component={Sales} />
         <Route exact={true} path='/my-orders' component={MyOrders} />
         <Route exact={true} path='/order-detail/:id' component={OrderDetails} />
+        <Route exact={true} path='/forgot-password' component={ForgotPassword} />
         <Redirect to="/" />
       </Switch>
     </PublicLayout>

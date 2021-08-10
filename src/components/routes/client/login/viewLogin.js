@@ -78,6 +78,7 @@ class login extends Component {
                       <div id='bad-credentials'>Bad Credentials</div>
                     ) : null}
                   </div>
+                  <button onClick={() => this.props.history.push('/forgot-password')}>Olvide mi contraseña</button>
                 </div>
               </div>
             </Form>
