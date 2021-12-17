@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router-dom'
@@ -35,6 +35,7 @@ const PublicHome: React.FC<Props> = (props) => {
         <div className={css.header}>
           <div className={css.publicityMenu}>
             <div className={css.publicityMr}>
+              {/* <img className={css.imageMuni} src={'src/assets/municipalidad.jpg'} alt="" /> */}
             </div>
           </div>
           <div className={css.title}>
@@ -49,10 +50,8 @@ const PublicHome: React.FC<Props> = (props) => {
             <div className={css.productMenu}>
               <Link to='/publicProduct'>Productos</Link>
             </div>
-            <div>
-              <div className={css.basketMenu}>
-                <Link to='/cart'>Carrito</Link>
-              </div>
+            <div className={css.basketMenu}>
+              <Link to='/cart'>Carrito</Link>
             </div>
           </div>
           <div className={css.buttonSession}>

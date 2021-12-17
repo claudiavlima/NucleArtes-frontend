@@ -31,13 +31,20 @@ const AdminLayout: React.FC<ReduxProps> = (props) => {
         >
           Ventas
       </button>
-        {/* <button
-          onClick={() => history.push('/profile/my-order')}
-          disabled={location.pathname === '/profile/my-order'}
+        <button
+          onClick={() => history.push('/admin/reports')}
+          disabled={location.pathname === '/admin/reports'}
           className={css.routes}
         >
-          Categorías
-      </button> */}
+          Estadísticas
+      </button>
+        <button
+          onClick={() => history.push('/admin/publicity')}
+          disabled={location.pathname === '/admin/publicity'}
+          className={css.routes}
+        >
+          Públicidad
+      </button>
         <button
           onClick={logOut}
           className={css.routes}
@@ -52,7 +59,7 @@ const AdminLayout: React.FC<ReduxProps> = (props) => {
     <div className={css.pageContainer}>
       <div className={css.columnContainer}>
         <div className={css.title}>
-          APP WEB Administrador
+          Panel de administrador
         </div>
         <div className={css.optionsContainer}>
           {options}

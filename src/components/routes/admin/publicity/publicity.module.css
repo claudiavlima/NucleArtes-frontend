@@ -1,0 +1,32 @@
+.containerOptions {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+}
+
+.option {
+	display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.containerFields {
+  display: flex;
+  align-items: center;
+}
+
+.containerField {
+  margin: 10px;
+}
+
+p {
+  margin-right: 10px;
+}
+
+.btnView {
+  background-color: #085886 !important;
+  color: white !important;
+  border-radius: 20px !important;
+  height: 30px;
+}

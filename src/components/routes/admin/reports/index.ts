@@ -1,30 +1,32 @@
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import publicHome from './publicHome';
-import { logOut } from '../../../redux/actions/loginActions';
+import Component from './reports';
+import { logOut } from '../../../../redux/actions/loginActions';
+import { fetchCategories } from '../../../../redux/actions/categorieActions';
+
 export interface StateProps {
-  cartItems?: any;
-  isAuth?: boolean;
-  user?: any;
+  categories: any,
 }
 
 const mapStateToProps = (state: any) => {
   return {
-    cart: state.cart,
+    categories: state.categories.items,
     isLoading: state.isLoading,
-    isAuth: state.users.isAuth
+    isAuth: state.isAuth
   }
 }
 
 export interface DispatchProps {
   logOut?: typeof logOut;
+  fetchCategories: typeof fetchCategories;
 }
 
 const mapDispatchToProps = (dispatch: any) => {
   return bindActionCreators({
     logOut,
+    fetchCategories,
   }, dispatch)
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(publicHome);
+export default connect(mapStateToProps, mapDispatchToProps)(Component);
 export type ReduxProps = DispatchProps & StateProps;

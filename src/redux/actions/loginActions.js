@@ -10,7 +10,21 @@ import {
   FORGOT_PASSWORD_FETCHING,
   FORGOT_PASSWORD_REJECTED,
   FORGOT_PASSWORD_FULFILLED,
+  SET_MAIL_SENDED,
+  CHANGE_PASSWORD_FETCHING,
+  CHANGE_PASSWORD_FULFILLED,
+  CHANGE_PASSWORD_REJECTED,
+  FETCH_USERS,
 } from './types'
+
+// FETCH PRODUCTS
+export const fetchUsers = () => dispatch => {
+  fetch('http://localhost:5000/api/users')
+    .then(res => res.json())
+    .then(data => {
+      return dispatch({ type: FETCH_USERS, payload: data })
+    })
+}
 
 //LOGIN USER ACCOUNT
 export const loginAccount = data => {
@@ -122,6 +136,46 @@ export const forgotPassword = data => {
         } else {
           return dispatch({
             type: FORGOT_PASSWORD_REJECTED,
+            payload: res.error
+          })
+        }
+      })
+  }
+}
+
+export const setMailSended = (data) => {
+  return dispatch => {
+    dispatch({
+      type: SET_MAIL_SENDED,
+      payload: data,
+    })
+  }
+}
+
+export const changePassword = (data) => {
+  return dispatch => {
+    dispatch({
+      type: CHANGE_PASSWORD_FETCHING,
+    })
+    const options = {
+      timeout: 25000,
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }
+    return fetch(`http://localhost:5000/api/users/change-password/${data.id}`, options)
+      .then(res => res.json())
+      .then(res => {
+        if (res.msg !== 'Invalid Email or password') {
+          return dispatch({
+            type: CHANGE_PASSWORD_FULFILLED,
+            payload: res
+          })
+        } else {
+          return dispatch({
+            type: CHANGE_PASSWORD_REJECTED,
             payload: res.error
           })
         }

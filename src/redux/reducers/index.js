@@ -5,6 +5,7 @@ import loginReducer from './loginReducer'
 import cartReducer from './cartReducer'
 import salesReducer from './salesReducer'
 import { reducer as form, FormStateMap } from 'redux-form';
+import publicityReducer from './publicityReducer';
 
 export default combineReducers({
     products: productReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
     cart: cartReducer,
     order: salesReducer,
     form,
+    publicity: publicityReducer
 })

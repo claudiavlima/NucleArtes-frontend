@@ -10,6 +10,7 @@ import Cart from '../client/carts/cart';
 import MyOrders from '../client/my-orders';
 import OrderDetails from '../client/order-details';
 import ForgotPassword from './forgot-password';
+import RecoverPassword from './recover-password';
 
 const ClientRoutes: React.FC = () => {
   const location = useLocation();
@@ -25,6 +26,7 @@ const ClientRoutes: React.FC = () => {
         <Route exact={true} path='/my-orders' component={MyOrders} />
         <Route exact={true} path='/order-detail/:id' component={OrderDetails} />
         <Route exact={true} path='/forgot-password' component={ForgotPassword} />
+        <Route exact={true} path='/recover-password/:id' component={RecoverPassword} />
         <Redirect to="/" />
       </Switch>
     </PublicLayout>

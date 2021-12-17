@@ -28,6 +28,12 @@
   justify-content: flex-end;
   width: 20%;
   height: 100px;
+  background: url(../../../assets/municipalidad.jpg);
+}
+
+.imageMuni{
+  height: 200px;
+  width: 200px;
 }
 
 .publicityMr {
@@ -56,7 +62,6 @@
 .options {
   display: flex;
   flex-direction: row;
-  justify-content: flex-end;
   width: 50%;
   height: 50px;
 }
@@ -69,21 +74,21 @@
   height: 50px;
 }
 
-.productMenu{
+.productMenu, .basketMenu{
   display: flex;
   justify-content: center;
   align-items: center;
   width: 12%;
   height: 50px;
 }
-
+/* 
 .basketMenu {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 50px;
   height: 50px;
-}
+} */
 
 .registerMenu {
   display: flex;

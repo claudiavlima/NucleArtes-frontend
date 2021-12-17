@@ -19,4 +19,6 @@ export enum ModalKey {
 export enum FormNames {
   ADD_PRODUCT = 'addProduct',
   FORGOT_PASSWORD = 'forgotPassword',
+  RECOVER_PASSWORD = 'recoverPassword',
+  PUBLICITY_FORM = 'publicityForm'
 }

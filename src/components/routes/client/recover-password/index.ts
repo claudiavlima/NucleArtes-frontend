@@ -1,9 +1,9 @@
-import Component from './forgot-password';
+import Component from './recover-password';
 import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import { getOrderById } from '../../../../redux/actions/orderActions';
 import { getSelectedOrderById } from '../../../../redux/actions/selectors';
-import { forgotPassword, setMailSended } from '../../../../redux/actions/loginActions';
+import { setMailSended, changePassword } from '../../../../redux/actions/loginActions';
 import get from 'lodash/get';
 import { FormNames } from '../../../../enums';
 import {
@@ -13,25 +13,32 @@ import {
 } from 'redux-form';
 import { RouteComponentProps } from 'react-router-dom';
 import {
+  FORGOT_PASSWORD_FETCHING,
   FORGOT_PASSWORD_FULFILLED,
   FORGOT_PASSWORD_REJECTED,
+  RECOVER_PASSWORD,
+  CHANGE_PASSWORD_FULFILLED,
 } from '../../../../redux/actions/types';
 
 export interface ForgotPassword {
-  dni: string
+  password: string,
+  confirmPassword: string
+
 }
 
 export interface StateProps {
   user: any;
   initialValues?: any;
   selectedOrder: any;
-  isMailSended: boolean;
+  isFetching: boolean;
+  mailSended: boolean;
+  userId: string;
 }
 
 export interface DispatchProps {
   getOrderById: typeof getOrderById;
-  forgotPassword: typeof forgotPassword;
   setMailSended: typeof setMailSended;
+  changePassword: typeof changePassword;
 }
 
 interface OwnProps {
@@ -54,52 +61,35 @@ const mapStateToProps = (state: any, ownProps: OwnProps) => {
     selectedOrder,
     initialValues,
     user: state.users.user,
-    isMailSended: state.users.mailSended,
+    isFetching: state.users.isFetchingSendMail,
+    mailSended: state.users.mailSended,
+    userId: get(ownProps.match, 'params.id', ''),
   };
 };
 
 const mapDispatchToProps = (dispatch: Dispatch) =>
   bindActionCreators({
     getOrderById,
-    forgotPassword,
     setMailSended,
+    changePassword,
   }, dispatch);
 
 const onSubmit = async (values: ForgotPassword, dispatch: any, props: ReduxProps) => {
   try {
     let response: any;
 
-    const addPayload = {
-      dni: values.dni,
-    };
-    // console.log('ADD PAYLOAD', addPayload);
-    // if (props.isEditing) {
-    //   const changedValues: Partial<ProductValues> = diff(props.initialValues, values);
-    //   const payload = {
-    //     _id: props.selectedProduct && props.selectedProduct._id,
-    //     ...changedValues,
-    //   };
-
-    response = await props.forgotPassword(addPayload);
-
-    // } else {
-    //   response = await props.postProduct(addPayload);
-    // }
-    // if (props.isEditing) {
-    //   switch (response.type) {
-    //     case UPDATE_PRODUCT_ERROR:
-    //       throw Error('Hubo un error al editar el producto');
-    //     case UPDATE_PRODUCT_SUCCESS:
-    //       return props.history.push('/admin/products');
-    //   }
-    // } else {
-    switch (response.type) {
-      case FORGOT_PASSWORD_REJECTED:
-        throw Error('Hubo un error al enviar el email');
-      case FORGOT_PASSWORD_FULFILLED:
-      // return props.history.push('/login');
+    const payload = {
+      password: values.password,
+      confirmPassword: values.confirmPassword,
+      id: props.userId,
     }
-    // }
+
+    response = await props.changePassword(payload);
+
+    switch (response.type) {
+      case CHANGE_PASSWORD_FULFILLED:
+        return props.history.push('/login');
+    }
   }
 
   catch (error) {
@@ -111,7 +101,7 @@ const onSubmit = async (values: ForgotPassword, dispatch: any, props: ReduxProps
 
 
 export const reduxFormConfig = {
-  form: FormNames.FORGOT_PASSWORD,
+  form: FormNames.RECOVER_PASSWORD,
   onSubmit,
 };
 

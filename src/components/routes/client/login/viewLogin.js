@@ -16,10 +16,14 @@ class login extends Component {
   //COMPARE VALUES WITH DATABASE
   getLogin = values => {
     this.props.loginAccount(values).then(response => {
-      if (response.payload.user.category === 'admin') {
+      console.log('RESPONSE', response);
+      // if (!response) {
+      //   return undefined;
+      // }
+      if (response && response.payload && response.payload.user.category === 'admin') {
         console.log('ENTRE AL IF')
         return this.props.history.push('/admin/products');
-      } else {
+      } else if (response && response.payload && response.payload.user.category === 'client') {
         console.log('ENTRE AL SEGUNDO IF')
         return this.props.history.push('/');
       }
@@ -59,7 +63,7 @@ class login extends Component {
                       className='buttonLogin'
                       to='/register'
                     >
-                      Create Account
+                      Crear Cuenta
                     </Link>
                   </div>
                   {!this.props.isLoading ? (
@@ -73,12 +77,12 @@ class login extends Component {
                   ) : (
                     <ClipLoader size={50} color={'black'} loading />
                   )}
-                  <div className='bad-credentials-1'>
-                    {this.props.failedLogin ? (
-                      <div id='bad-credentials'>Bad Credentials</div>
-                    ) : null}
-                  </div>
-                  <button onClick={() => this.props.history.push('/forgot-password')}>Olvide mi contraseña</button>
+                  <button className='buttonLogin' onClick={() => this.props.history.push('/forgot-password')}>Olvide mi contraseña</button>
+                </div>
+                <div className='bad-credentials-1'>
+                  {this.props.failedLogin ? (
+                    <div id='bad-credentials'>Bad Credentials</div>
+                  ) : null}
                 </div>
               </div>
             </Form>
